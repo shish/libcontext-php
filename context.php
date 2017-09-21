@@ -1,12 +1,15 @@
 <?php
 
 class Context {
-	function __construct(string $url=null, bool $append=True) {
+	/** @type string */
+	private $log;
+
+	public function __construct(string $url=null, bool $append=True) {
 		$this->set_log($url, $append);
 	}
 
-	function set_log(string $url=null, bool $append=True) {
-		if($url) {
+	public function set_log(string $url=null, bool $append=True) {
+		if($url !== null) {
 			$p = parse_url($url);
 			if($p["scheme"] == "file") {
 				if(@$p["host"] && @$p["path"]) {
@@ -32,7 +35,7 @@ class Context {
 		}
 	}
 
-	function log_msg(string $func, string $text=null, string $type) {
+	public function log_msg(string $func, string $text=null, string $type) {
 		if($this->log) {
 			fprintf(
 				$this->log,
@@ -55,12 +58,12 @@ class Context {
 		return $p['function'];
 	}
 
-	function log_bmark(string $text=null) {$this->log_msg($this->get_func(), $text, "BMARK");}
-	function log_clear(string $text=null) {$this->log_msg($this->get_func(), $text, "CLEAR");}
-	function log_endok(string $text=null) {$this->log_msg($this->get_func(), $text, "ENDOK");}
-	function log_ender(string $text=null) {$this->log_msg($this->get_func(), $text, "ENDER");}
+	public function log_bmark(string $text=null) {$this->log_msg($this->get_func(), $text, "BMARK");}
+	public function log_clear(string $text=null) {$this->log_msg($this->get_func(), $text, "CLEAR");}
+	public function log_endok(string $text=null) {$this->log_msg($this->get_func(), $text, "ENDOK");}
+	public function log_ender(string $text=null) {$this->log_msg($this->get_func(), $text, "ENDER");}
 
-	function log_start(string $text=null, bool $bookmark=false, bool $clear=false) {
+	public function log_start(string $text=null, bool $bookmark=false, bool $clear=false) {
 		if($clear) {
 			$this->log_msg($this->get_func(), $text, "CLEAR");
 		}

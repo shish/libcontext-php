@@ -21,7 +21,7 @@ function greet($name) {
 }
 
 class ContextTestCase extends \PHPUnit\Framework\TestCase {
-	function testBasic() {
+	public function testBasic() {
 		global $ctx;
 		$ctx = new Context("file://output.php.ctxt");
 		$ctx->log_start("running program", true);
