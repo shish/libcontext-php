@@ -2,3 +2,4 @@ vendor/
 *.phar
 *.ctxt
 *.cbin
+*.clover
