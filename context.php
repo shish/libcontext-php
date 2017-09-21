@@ -1,7 +1,7 @@
 <?php
 
 class Context {
-	/** @type string */
+	/** @type resource */
 	private $log;
 
 	public function __construct(string $url=null, bool $append=True) {
