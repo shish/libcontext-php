@@ -43,7 +43,7 @@ class Context {
 				microtime(true), # returning a float is 5.0+
 				php_uname('n'),  # gethostname() is 5.3+
 				posix_getpid(),
-				function_exists("hphp_get_thread_id") ? hphp_get_thread_id() : posix_getpid(),
+				function_exists("hphp_get_thread_id") ? /** @scrutinizer ignore-call */ hphp_get_thread_id() : posix_getpid(),
 				$type, $func, $text
 			);
 		}
